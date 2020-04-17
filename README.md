@@ -1,1 +1,3 @@
-Discourse plugin to implement all extensions needed for Design Bundles company
+# DiscourseDesignBundles
+
+DiscourseDesignBundles is a plugin for implementation of all extensions needed for Design Bundles company
