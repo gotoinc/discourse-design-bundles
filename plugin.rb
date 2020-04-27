@@ -8,6 +8,8 @@
 
 PLUGIN_NAME ||= 'DiscourseDesignBundles'
 
+load File.expand_path('../lib/design_bundles.rb', __FILE__)
+
 after_initialize do
   add_to_serializer(:post, :external_user_id, false) do
     object&.user&.single_sign_on_record&.external_id
@@ -27,6 +29,16 @@ after_initialize do
       Discourse.cache.write(:store_ids_for_advertisement, store_ids)
     end
 
+  end
+
+  TopicViewSerializer.class_eval do
+    attributes :shop_advertisement_html
+
+    def shop_advertisement_html
+      shop_id = Discourse.cache.read(:store_ids_for_advertisement).sample
+      user_id = object&.guardian&.user&.id
+      DesignBundles.product_display_html(shop_id, user_id)
+    end
   end
 
 end
