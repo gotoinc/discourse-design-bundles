@@ -13,6 +13,10 @@ after_initialize do
     object&.user&.single_sign_on_record&.external_id
   end
 
+  register_html_builder('server:before-head-close') do
+    "<link rel='stylesheet' type='text/css' href='https://designbundles.net/css/discourse.css'>"
+  end
+
   class ::Jobs::CacheStoreIdsForAdvertisement < ::Jobs::Scheduled
     every 10.minutes
 
@@ -24,6 +28,10 @@ after_initialize do
                   AND user_custom_fields.user_id > 0
                   AND user_custom_fields.value IS NOT NULL", 1.week.ago)
           .pluck('user_custom_fields.value').uniq
+
+      #FIXME HACK FOR TESTING
+      # store_ids = [4079, 1630, 2972, 2077, 3253] if store_ids.empty?
+
       Discourse.cache.write(:store_ids_for_advertisement, store_ids)
     end
 
