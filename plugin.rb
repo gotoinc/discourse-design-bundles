@@ -9,6 +9,7 @@
 PLUGIN_NAME ||= 'DiscourseDesignBundles'
 
 load File.expand_path('../lib/design_bundles.rb', __FILE__)
+load File.expand_path('../lib/shop_advertisement_serializer_mixin.rb', __FILE__)
 
 after_initialize do
   add_to_serializer(:post, :external_user_id, false) do
@@ -32,13 +33,7 @@ after_initialize do
   end
 
   TopicViewSerializer.class_eval do
-    attributes :shop_advertisement_html
-
-    def shop_advertisement_html
-      shop_id = Discourse.cache.read(:store_ids_for_advertisement).sample
-      user_id = object&.guardian&.user&.id
-      DesignBundles.product_display_html(shop_id, user_id)
-    end
+    include ShopAdvertisementSerializerMixin
   end
 
 end
