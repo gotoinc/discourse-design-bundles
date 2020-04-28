@@ -142,6 +142,6 @@ export default {
   name: "shop-advertisement",
 
   initialize() {
-    withPluginApi("0.8.31", initializeShopAdvertisement);
+    withPluginApi("0.8.42", initializeShopAdvertisement);
   }
 };
