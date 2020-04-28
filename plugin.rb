@@ -8,8 +8,8 @@
 
 PLUGIN_NAME ||= 'DiscourseDesignBundles'
 
-load File.expand_path('../lib/design_bundles.rb', __FILE__)
-load File.expand_path('../lib/shop_advertisement_serializer_mixin.rb', __FILE__)
+load File.expand_path('lib/design_bundles.rb', __dir__)
+load File.expand_path('app/serializers/shop_advertisement_serializer_mixin.rb', __dir__)
 
 after_initialize do
   add_to_serializer(:post, :external_user_id, false) do
@@ -19,7 +19,7 @@ after_initialize do
   class ::Jobs::CacheStoreIdsForAdvertisement < ::Jobs::Scheduled
     every 10.minutes
 
-    def execute(_args)
+    def execute(args)
       store_ids = Post.joins("INNER JOIN user_custom_fields
                   ON user_custom_fields.user_id = posts.user_id")
           .where("posts.created_at > ?
