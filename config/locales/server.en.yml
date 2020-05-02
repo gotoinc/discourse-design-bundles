@@ -1,0 +1,5 @@
+en:
+  site_settings:
+    DiscourseDesignBundles_css_url: 'CSS URL'
+    DiscourseDesignBundles_api_url: 'API Endpoint URL'
+    DiscourseDesignBundles_enabled: 'Enable DesignBundles'
