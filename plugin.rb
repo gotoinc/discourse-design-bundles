@@ -7,6 +7,7 @@
 # url: https://github.com/gotoinc/discourse-design-bundles/
 
 PLUGIN_NAME ||= 'DiscourseDesignBundles'
+
 enabled_site_setting :DiscourseDesignBundles_enabled
 
 load File.expand_path('lib/design_bundles.rb', __dir__)
