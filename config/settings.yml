@@ -5,5 +5,8 @@ plugins:
   DiscourseDesignBundles_css_url:
     type: string
     default: 'https://designbundles.net/css/discourse.css'
+  DiscourseDesignBundles_hash_key:
+    type: string
+    default: ''
   DiscourseDesignBundles_enabled:
     default: true
