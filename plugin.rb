@@ -2,14 +2,18 @@
 
 # name: DiscourseDesignBundles
 # about: Discourse plugin to implement all extensions needed for Design Bundles company
-# version: 0.3
+# version: 0.4
 # authors: Gotoinc
 # url: https://github.com/gotoinc/discourse-design-bundles/
 
 PLUGIN_NAME ||= 'DiscourseDesignBundles'
 
+enabled_site_setting :DiscourseDesignBundles_enabled
+
 load File.expand_path('lib/design_bundles.rb', __dir__)
 load File.expand_path('app/serializers/shop_advertisement_serializer_mixin.rb', __dir__)
+
+register_asset 'stylesheets/design_bundles_settings.scss'
 
 after_initialize do
   add_to_serializer(:post, :external_user_id, false) do
@@ -17,7 +21,7 @@ after_initialize do
   end
 
   register_html_builder('server:before-head-close') do
-    "<link rel='stylesheet' type='text/css' href='https://designbundles.net/css/discourse.css'>"
+    "<link rel='stylesheet' type='text/css' href='#{SiteSetting.DiscourseDesignBundles_css_url}'>"
   end
 
   class ::Jobs::CacheStoreIdsForAdvertisement < ::Jobs::Scheduled
