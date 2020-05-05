@@ -1,10 +1,10 @@
 plugins:
   DiscourseDesignBundles_api_url:
     type: string
-    default: 'https://designbundles.net/product-display.php'
+    default: ''
   DiscourseDesignBundles_css_url:
     type: string
-    default: 'https://designbundles.net/css/discourse.css'
+    default: ''
   DiscourseDesignBundles_hash_key:
     type: string
     default: ''

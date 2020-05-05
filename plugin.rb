@@ -20,8 +20,10 @@ after_initialize do
     object&.user&.single_sign_on_record&.external_id
   end
 
-  register_html_builder('server:before-head-close') do
-    "<link rel='stylesheet' type='text/css' href='#{SiteSetting.DiscourseDesignBundles_css_url}'>"
+  unless SiteSetting.DiscourseDesignBundles_css_url.strip.empty?
+    register_html_builder('server:before-head-close') do
+      "<link rel='stylesheet' type='text/css' href='#{SiteSetting.DiscourseDesignBundles_css_url}'>"
+    end
   end
 
   class ::Jobs::CacheStoreIdsForAdvertisement < ::Jobs::Scheduled
@@ -37,13 +39,15 @@ after_initialize do
           .pluck('user_custom_fields.value').uniq
 
       #FIXME HACK FOR TESTING
-      # store_ids = [4079, 1630, 2972, 2077, 3253] if store_ids.empty?
+       store_ids = [4079, 1630, 2972, 2077, 3253] if store_ids.empty?
 
       Discourse.cache.write(:store_ids_for_advertisement, store_ids)
     end
   end
 
-  TopicViewSerializer.class_eval do
-    include ShopAdvertisementSerializerMixin
+  unless SiteSetting.DiscourseDesignBundles_api_url.strip.empty?
+    TopicViewSerializer.class_eval do
+      include ShopAdvertisementSerializerMixin
+    end
   end
 end
