@@ -2,7 +2,7 @@
 
 # name: DiscourseDesignBundles
 # about: Discourse plugin to implement all extensions needed for Design Bundles company
-# version: 0.4
+# version: 0.5
 # authors: Gotoinc
 # url: https://github.com/gotoinc/discourse-design-bundles/
 
@@ -39,7 +39,7 @@ after_initialize do
           .pluck('user_custom_fields.value').uniq
 
       #FIXME HACK FOR TESTING
-       store_ids = [4079, 1630, 2972, 2077, 3253] if store_ids.empty?
+      # store_ids = [4079, 1630, 2972, 2077, 3253] if store_ids.empty?
 
       Discourse.cache.write(:store_ids_for_advertisement, store_ids)
     end
