@@ -23,7 +23,7 @@ module ShopAdvertisementSerializerMixin
 
     custom_field = UserCustomField.select(:value).where(user_id: target_user_id, name: 'storeId').last
 
-    shop_id = "here must be storeId" unless custom_field.nil?
+    shop_id = custom_field unless custom_field.nil?
 
     DesignBundles.product_display_html(shop_id, current_user)
   end
