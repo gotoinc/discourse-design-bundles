@@ -15,6 +15,8 @@ module ShopAdvertisementSerializerMixin
     shop_id = UserCustomField.where(user_id: target_user_id, name: 'storeId').first&.value ||
               Discourse.cache.read(:store_ids_for_advertisement)&.sample
 
-    DesignBundles.product_display_html(shop_id, current_user)
+    device = MobileDetection.mobile_device?(scope.request.user_agent) ? '3' : '1'
+    
+    DesignBundles.product_display_html(shop_id, current_user, device)
   end
 end
