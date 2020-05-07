@@ -10,9 +10,9 @@ module ShopAdvertisementSerializerMixin
 
     best_answer_id = object.topic.custom_fields["accepted_answer_post_id"]
 
-    target_user_id = best_answer_id ? Post.find(best_answer_id).user_id : object.user_id
+    target_user_id = best_answer_id ? Post.find(best_answer_id).user_id : user_id
 
-    shop_id = UserCustomField.where(user_id: target_user_id, name: 'storeId').first&.value || 
+    shop_id = UserCustomField.where(user_id: target_user_id, name: 'storeId').first&.value ||
               Discourse.cache.read(:store_ids_for_advertisement)&.sample
 
     DesignBundles.product_display_html(shop_id, current_user)
