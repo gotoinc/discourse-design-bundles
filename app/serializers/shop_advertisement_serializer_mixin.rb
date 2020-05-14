@@ -6,7 +6,7 @@ module ShopAdvertisementSerializerMixin
   end
 
   def shop_advertisement_html
-    current_user = object&.guardian&.user&.id
+    current_user = object&.guardian&.user&.single_sign_on_record&.external_id
 
     best_answer_id = object.topic.custom_fields["accepted_answer_post_id"]
 
@@ -16,7 +16,7 @@ module ShopAdvertisementSerializerMixin
               Discourse.cache.read(:store_ids_for_advertisement)&.sample
 
     device = MobileDetection.mobile_device?(scope&.request&.user_agent) ? '3' : '1'
-    
+
     DesignBundles.product_display_html(shop_id, current_user, device)
   end
 end
