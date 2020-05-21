@@ -12,7 +12,7 @@ module ShopAdvertisementSerializerMixin
 
     target_user_id = best_answer_id ? Post.find(best_answer_id).user_id : user_id
 
-    if User.find(user_id).groups.where(name: SiteSetting.DiscourseDesignBundles_trusted_group).count > 0
+    if object.topic.user.groups.exists?(:name => SiteSetting.DiscourseDesignBundles_trusted_group)
       return ''
     else
       shop_id = UserCustomField.where(user_id: target_user_id, name: 'storeId').first&.value ||
