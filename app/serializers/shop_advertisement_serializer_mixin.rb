@@ -8,11 +8,11 @@ module ShopAdvertisementSerializerMixin
   def shop_advertisement_html
     current_user = object&.guardian&.user&.single_sign_on_record&.external_id
 
-    best_answer_id = object.topic.custom_fields["accepted_answer_post_id"]
+    best_answer_id = object&.topic&.custom_fields["accepted_answer_post_id"]
 
     target_user_id = best_answer_id ? Post.find(best_answer_id).user_id : user_id
 
-    if object.topic.user.groups.exists?(:name => SiteSetting.DiscourseDesignBundles_trusted_group)
+    if object&.topic&.user&.groups&.exists?(:name => SiteSetting.DiscourseDesignBundles_trusted_group)
       return ''
     else
       shop_id = UserCustomField.where(user_id: target_user_id, name: 'storeId').first&.value ||
