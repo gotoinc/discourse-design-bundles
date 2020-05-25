@@ -8,7 +8,7 @@ plugins:
   DiscourseDesignBundles_hash_key:
     type: string
     default: ''
-  DiscourseDesignBundles_trusted_group:
+  DiscourseDesignBundles_trusted_affiliates:
     type: string
     default: ''
   DiscourseDesignBundles_enabled:

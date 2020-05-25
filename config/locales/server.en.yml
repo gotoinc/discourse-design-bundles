@@ -3,5 +3,5 @@ en:
     DiscourseDesignBundles_css_url: 'CSS URL'
     DiscourseDesignBundles_api_url: 'API Endpoint URL'
     DiscourseDesignBundles_hash_key: 'Hash Key'
-    DiscourseDesignBundles_trusted_group: 'Trusted Group Name'
+    DiscourseDesignBundles_trusted_affiliates: 'Trusted Affiliates'
     DiscourseDesignBundles_enabled: 'Enable DesignBundles'

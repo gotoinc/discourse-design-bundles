@@ -12,11 +12,11 @@ module ShopAdvertisementSerializerMixin
 
     target_user_id = best_answer_id ? Post.find(best_answer_id).user_id : user_id
 
-    if object&.topic&.user&.groups&.exists?(:name => SiteSetting.DiscourseDesignBundles_trusted_group)
+    if object&.topic&.user&.groups&.exists?(:name => SiteSetting.DiscourseDesignBundles_trusted_affiliates)
       return ''
     else
       shop_id = UserCustomField.where(user_id: target_user_id, name: 'storeId').first&.value ||
-      Discourse.cache.read(:store_ids_for_advertisement)&.sample
+                Discourse.cache.read(:store_ids_for_advertisement)&.sample
 
       device = MobileDetection.mobile_device?(scope&.request&.user_agent) ? '3' : '1'
 
