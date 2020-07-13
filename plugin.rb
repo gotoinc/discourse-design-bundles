@@ -2,7 +2,7 @@
 
 # name: DiscourseDesignBundles
 # about: Discourse plugin to implement all extensions needed for Design Bundles company
-# version: 0.8
+# version: 1.0
 # authors: Gotoinc
 # url: https://github.com/gotoinc/discourse-design-bundles/
 
