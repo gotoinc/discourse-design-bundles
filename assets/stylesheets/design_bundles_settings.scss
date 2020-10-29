@@ -1,3 +1,9 @@
 .settings .setting .setting-label {
   width: 30%;
 }
+
+//fix for correct display of onebox previews
+.ytp-thumbnail-image {
+  max-width: none !important;
+  max-height: none !important;
+}
